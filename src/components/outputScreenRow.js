@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function OutputScreenRow() {
+export default function OutputScreenRow(props) {
   return (
     <div className="screen-row">
-      <input type="text" name="" id="" readOnly />
+      <input type="text" readOnly value = {props.value} />
     </div>
   )
 }
