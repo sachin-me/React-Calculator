@@ -31,7 +31,7 @@ class Calculator extends React.Component {
         // if it's an equal sign, use the eval module
         // to evaluate the question ,convert the answer
         // (in number) to String
-    		if(this.state.question!=='')
+    		if (this.state.question !== '')
         {
     			var ans='';
     		  try
@@ -42,13 +42,13 @@ class Calculator extends React.Component {
     			{
     				this.setState({answer: "Math Error"});
     			}
-    			if(ans===undefined)
+    			if (ans === undefined)
     				this.setState({answer: "Math Error"});
     			// update answer in our state.
     			else
     				this.setState({ answer: ans , question: ans});
-          }
-    			break;
+        }
+    		break;
       }
       case 'Clear': {
         // if it's the Clears sign, just clean our
@@ -62,7 +62,52 @@ class Calculator extends React.Component {
   		str = str.substr(0,str.length-1);
   		this.setState({question: str});
   		break;
-	  }
+    }
+    
+    case '√': {
+      const ques = this.state.question;
+      const root = Math.sqrt(ques);
+      this.setState({ answer: root, question: '' })
+      break;
+    }
+
+    case 'square': {
+      const ques = this.state.question;
+      const power = Math.pow(ques, 2);
+      this.setState({ answer: power, question: '' })
+      break;
+    }
+
+    case 'log10': {
+      const ques = this.state.question;
+      const logNum = Math.log10(ques);
+      this.setState({ answer: logNum, question: '' })
+      break;
+    }
+
+    case 'sin': {
+      const ques = this.state.question;
+      let convertRad = (ques * Math.PI)/180;
+      const sin = Math.sin(convertRad);
+      this.setState({ answer: sin, question: '' })
+      break;
+    }
+
+    case 'cos': {
+      const ques = this.state.question;
+      let convertRad = (ques * Math.PI)/180;
+      const cos = Math.cos(convertRad);
+      this.setState({ answer: cos, question: '' })
+      break;
+    }
+
+    case 'tan': {
+      const ques = this.state.question;
+      let convertRad = (ques * Math.PI)/180;
+      const tan = Math.tan(convertRad);
+      this.setState({ answer: tan, question: '' })
+      break;
+    }
 
     default: {
         // for every other commmand, update the answer in the state
@@ -103,9 +148,18 @@ class Calculator extends React.Component {
             <Button label={'+'} handleClick = {this.handleClick}/>
           </div>
           <div className="button-row">
+            <Button label={'√'} handleClick = {this.handleClick} />
             <Button label={'0'} handleClick = {this.handleClick} />
+            <Button label={'square'} handleClick = {this.handleClick} />
             <Button label={'='} handleClick = {this.handleClick}/>
           </div>
+          <div className="button-row">
+            <Button label={`log10`} handleClick = {this.handleClick} />
+            <Button label={'sin'} handleClick = {this.handleClick} />
+            <Button label={'cos'} handleClick = {this.handleClick} />
+            <Button label={'tan'} handleClick = {this.handleClick}/>
+          </div>
+          
         </div>
     </div>
     );
